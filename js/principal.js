@@ -4,40 +4,37 @@ titulo.textContent = "Giulia Nutrição" // manipulando o título via JS
 console.log(titulo);
 
 
-var paciente = document.querySelector("#primeiro-paciente");
-var pacientePeso = paciente.querySelector(".info-peso");
-var peso = pacientePeso.textContent;
+var pacientes = document.querySelectorAll(".paciente");
+console.log(pacientes)
 
+for(var i= 0; i < pacientes.length; i++){
+    var paciente = pacientes[i];
+    var pacientePeso = paciente.querySelector(".info-peso");
+    var peso = pacientePeso.textContent;
+    var pacienteAltura = paciente.querySelector(".info-altura");
+    var altura = pacienteAltura.textContent;
+    var tdImc = paciente.querySelector(".info-imc");
+    var pesoValido = true;
+    var alturaValida= true;
 
-var pacienteAltura = paciente.querySelector(".info-altura");
-var altura = pacienteAltura.textContent;
-
-var tdImc = document.querySelector(".info-imc");
-
-var pesoValido = true;
-var alturaValida= true;
-
-if (peso <= 0 || peso >= 1000){
+    if (peso <= 0 || peso >= 1000){
     console.log("Peso Inválido");
     pesoValido = false;
     tdImc.textContent = "Peso Inválido";
-}
+    }
 
-if (altura<0 ||altura >3.00){
+    if (altura<0 ||altura >3.00){
     console.log("Altura Inválida");
     alturaValida = false;
     tdImc.textContent = "Altura Inválida";
-   }
+    }
 
 
-if (alturaValida && pesoValido){
+    if (alturaValida && pesoValido){
     var imc = peso/(altura*altura);
-    tdImc.textContent=imc;
+    tdImc.textContent=imc.toFixed(2);
+    }
 }
-
-
-console.log(pacientePeso);
-console.log(pacienteAltura);
 
 
 
