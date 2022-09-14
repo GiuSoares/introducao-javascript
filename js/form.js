@@ -4,45 +4,59 @@ botaoAdicionar.addEventListener("click", function(event){
     
 
     var form = document.querySelector("#form-adiciona"); //pega o form 
+    
+    var paciente= obtemPacienteDoFormulario(form);
+    
+    var pacienteTr = montaTr(paciente);
 
-    //#region busca as informações digitadas nos campos do formulário
-    var nome = form.nome.value;
-    var peso = form.peso.value;
-    var altura = form.altura.value;
-    var gordura = form.gordura.value; 
-    //#endregion
+    var tabela = document.querySelector("#tabela-pacientes");
+    tabela.appendChild(pacienteTr); 
+    console.log(tabela)//adiciona o paciente na tabela
+
+    
+});
 
 
-    //#region cria nova linha para a tabela
+
+function obtemPacienteDoFormulario(form){
+    
+    var paciente = {
+        nome: form.nome.value,
+        peso: form.peso.value,
+        altura: form.altura.value,
+        gordura: form.gordura.value,
+        imc: calculaImc(form.peso.value,form.altura.value)
+
+    }
+return paciente;
+}
+
+
+function montaTr(paciente){
     var pacienteTr = document.createElement("tr");
     var nomeTd = document.createElement("td");
     var pesoTd = document.createElement("td");
     var alturaTd = document.createElement("td");
     var gorduraTd = document.createElement("td");
     var imcTd = document.createElement("td");
-    imcTd.textContent = calculaImc(peso,altura);
-    //#endregion
 
 
-    //#region acessa os dados inseridos no form
-    nomeTd.textContent = nome;
-    pesoTd.textContent = peso;
-    alturaTd.textContent = altura;
-    gorduraTd.textContent = gordura;
-    //#endregion
 
 
-    //#region adiciona colunas na linha da tabela
+   nomeTd.textContent = paciente.nome;
+   pesoTd.textContent = paciente.peso;
+   alturaTd.textContent = paciente.altura;
+   gorduraTd.textContent = paciente.gordura;
+   imcTd.textContent = calculaImc(peso,altura);
+
+
+    
     pacienteTr.appendChild(nomeTd);
     pacienteTr.appendChild(pesoTd);
     pacienteTr.appendChild(alturaTd);
     pacienteTr.appendChild(gorduraTd);
     pacienteTr.appendChild(imcTd);
-    console.log(pacienteTr);
-    //#endregion
-    
-    var tabela = document.querySelector("#tabela-pacientes");
-    tabela.appendChild(pacienteTr); //adiciona nova linha populada a tabela
 
-    
-})
+    return pacienteTr;
+
+}
