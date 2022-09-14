@@ -20,7 +20,7 @@ for(var i= 0; i < pacientes.length; i++){
 
     if (peso <= 0 || peso >= 1000){
     console.log("Peso Inválido");
-    pesoValido = false;
+    pesoValido = false; 
     tdImc.textContent = "Peso Inválido";
     paciente.classList.add("paciente-invalido");
     }
@@ -34,8 +34,7 @@ for(var i= 0; i < pacientes.length; i++){
 
 
     if (alturaValida && pesoValido){
-    var imc = peso/(altura*altura);
-    tdImc.textContent=imc.toFixed(2);
+    var imc = calculaImc(peso,altura);
     }
 }
 
@@ -43,17 +42,9 @@ titulo.addEventListener("click",function(){
     console.log("Olá, eu fui clicado!");
 });
 
+function calculaImc(peso,altura){
+  var imc = 0;
+  imc = peso/(altura*altura);
+  return imc.toFixed(2);
 
-
-
-
-/*function mostraMensagem(){
-  console.log("Olá, eu fui clicado!");
-  alert("Fui clicado"); 
-}*/
-
-
-
-
-
-		
+}

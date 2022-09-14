@@ -20,6 +20,7 @@ botaoAdicionar.addEventListener("click", function(event){
     var alturaTd = document.createElement("td");
     var gorduraTd = document.createElement("td");
     var imcTd = document.createElement("td");
+    imcTd.textContent = calculaImc(peso,altura);
     //#endregion
 
 
@@ -36,6 +37,7 @@ botaoAdicionar.addEventListener("click", function(event){
     pacienteTr.appendChild(pesoTd);
     pacienteTr.appendChild(alturaTd);
     pacienteTr.appendChild(gorduraTd);
+    pacienteTr.appendChild(imcTd);
     console.log(pacienteTr);
     //#endregion
     
