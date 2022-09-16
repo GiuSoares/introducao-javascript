@@ -5,17 +5,15 @@ botaoAdicionar.addEventListener("click", function(event){
 
     var form = document.querySelector("#form-adiciona"); //pega o form 
     
-    var paciente= obtemPacienteDoFormulario(form);
+    var paciente = obtemPacienteDoFormulario(form);
     
     var pacienteTr = montaTr(paciente);
 
     var tabela = document.querySelector("#tabela-pacientes");
     tabela.appendChild(pacienteTr); 
-    console.log(tabela)//adiciona o paciente na tabela
+    form.reset(); 
 
-    
 });
-
 
 
 function obtemPacienteDoFormulario(form){
@@ -28,35 +26,28 @@ function obtemPacienteDoFormulario(form){
         imc: calculaImc(form.peso.value,form.altura.value)
 
     }
-return paciente;
+    return paciente;
 }
 
 
 function montaTr(paciente){
     var pacienteTr = document.createElement("tr");
-    var nomeTd = document.createElement("td");
-    var pesoTd = document.createElement("td");
-    var alturaTd = document.createElement("td");
-    var gorduraTd = document.createElement("td");
-    var imcTd = document.createElement("td");
+    pacienteTr.classList.add("paciente");
 
-
-
-
-   nomeTd.textContent = paciente.nome;
-   pesoTd.textContent = paciente.peso;
-   alturaTd.textContent = paciente.altura;
-   gorduraTd.textContent = paciente.gordura;
-   imcTd.textContent = calculaImc(peso,altura);
-
-
-    
-    pacienteTr.appendChild(nomeTd);
-    pacienteTr.appendChild(pesoTd);
-    pacienteTr.appendChild(alturaTd);
-    pacienteTr.appendChild(gorduraTd);
-    pacienteTr.appendChild(imcTd);
+    pacienteTr.appendChild(montaTd(paciente.nome, "info-nome"));
+    pacienteTr.appendChild(montaTd(paciente.peso, "info-peso"));
+    pacienteTr.appendChild(montaTd(paciente.altura, "info-altura"));
+    pacienteTr.appendChild(montaTd(paciente.gordura, "info-gordura"));
+    pacienteTr.appendChild(montaTd(paciente.imc, "info-imc"));
 
     return pacienteTr;
 
+}
+
+
+function montaTd(conteudo, classe){
+    var td=document.createElement("td");
+    td.textContent = conteudo;
+    td.classList.add(classe);  
+    return td; 
 }
