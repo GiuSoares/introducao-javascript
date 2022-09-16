@@ -1,11 +1,7 @@
 var titulo = document.querySelector(".titulo");
 titulo.textContent = "Giulia Nutrição" // manipulando o título via JS
-//alert("Giulia é muito gata!"); //alertinha da massa
-console.log(titulo);
-
 
 var pacientes = document.querySelectorAll(".paciente");
-console.log(pacientes)
 
 for(var i= 0; i < pacientes.length; i++){
     var paciente = pacientes[i];
@@ -33,25 +29,22 @@ for(var i= 0; i < pacientes.length; i++){
     }
 }
 
-titulo.addEventListener("click",function(){
-    console.log("Olá, eu fui clicado!");
-});
 
-
-function validaPeso(peso){
-  if (peso>=0 && peso<100){
-    return true;
-  }else{
-    return false;
+function validaPeso(peso) {
+  if (peso > 0 && peso < 1000) {
+      return true;
+  } else {
+      return false;
   }
 }
 
 
-function validaAltura(altura){
-  if (altura>0 && altura < 3.00){
+function validaAltura(altura) {
+  if (altura > 0 && altura <= 3.00) {
     return true;
+    
   }else{
-    return false;
+      return false;
   }
 }
 
